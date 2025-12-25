@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人文件存储空间 - zhao761128</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-cloud-upload-alt"></i> 个人文件存储空间</h1>
+            <div class="user-section">
+                <div class="user-info" id="user-info">
+                    <span id="username">游客</span>
+                    <div class="user-menu" id="user-menu">
+                        <button onclick="showLoginModal()"><i class="fas fa-sign-in-alt"></i> 登录/注册</button>
+                        <button onclick="showStatementModal()"><i class="fas fa-file-contract"></i> 网站声明</button>
+                        <button onclick="exportData()"><i class="fas fa-download"></i> 导出数据</button>
+                        <button onclick="importData()"><i class="fas fa-upload"></i> 导入数据</button>
+                        <button onclick="logout()"><i class="fas fa-sign-out-alt"></i> 注销</button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <div class="upload-section">
+                <div class="upload-area" id="upload-area">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <h3>拖放文件到此处或点击选择</h3>
+                    <p>支持图片、视频、文档等文件</p>
+                    <input type="file" id="file-input" multiple hidden>
+                    <button class="btn-primary" id="select-file-btn">
+                        <i class="fas fa-plus"></i> 选择文件
+                    </button>
+                    <div class="storage-info">
+                        <div class="storage-bar">
+                            <div class="storage-fill" id="storage-fill"></div>
+                        </div>
+                        <span id="storage-text">存储空间: 0/100MB</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="files-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-folder-open"></i> 我的文件</h2>
+                    <div class="controls">
+                        <button class="btn-secondary" onclick="refreshFiles()">
+                            <i class="fas fa-sync-alt"></i> 刷新
+                        </button>
+                        <input type="text" id="search-input" placeholder="搜索文件..." oninput="searchFiles()">
+                    </div>
+                </div>
+                <div class="file-list" id="file-list">
+                    <!-- 文件列表由JS动态生成 -->
+                </div>
+            </div>
+        </main>
+
+        <!-- 登录/注册模态框 -->
+        <div id="login-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2><i class="fas fa-user"></i> 用户设置</h2>
+                    <button class="close-btn" onclick="closeLoginModal()">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="set-username"><i class="fas fa-user"></i> 用户名</label>
+                        <input type="text" id="set-username" placeholder="输入用户名" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="set-password"><i class="fas fa-lock"></i> 密码（可选）</label>
+                        <input type="password" id="set-password" placeholder="设置密码保护">
+                    </div>
+                    <button class="btn-primary" onclick="saveUserSettings()">
+                        <i class="fas fa-save"></i> 保存设置
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 链接管理模态框 -->
+        <div id="link-modal" class="modal">
+            <div class="modal-content" id="link-modal-content">
+                <!-- 内容由JS动态生成 -->
+            </div>
+        </div>
+
+        <!-- 网站声明模态框 -->
+        <div id="statement-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2><i class="fas fa-file-contract"></i> 网站声明</h2>
+                    <button class="close-btn" onclick="closeModal('statement-modal')">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="statement-content" id="statement-content">
+                        <!-- 声明内容由JS动态生成 -->
+                    </div>
+                    <div class="statement-actions">
+                        <button class="btn-primary" onclick="closeModal('statement-modal')">
+                            <i class="fas fa-check"></i> 我已阅读并同意
+                        </button>
+                        <button class="btn-secondary" onclick="downloadStatement()">
+                            <i class="fas fa-download"></i> 下载声明
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

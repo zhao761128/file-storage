@@ -46,7 +46,7 @@ const STATEMENT_CONTENT = `
 <p>如有问题或建议，请通过GitHub仓库Issues反馈。</p>
 
 <p style="text-align: center; color: #666; margin-top: 20px; font-size: 12px;">
-    <em>最后更新日期：${new Date().toLocaleDateString('zh-CN')}</em>
+    <em>最后更新日期：2025年12月25日</em>
 </p>
 `;
 
